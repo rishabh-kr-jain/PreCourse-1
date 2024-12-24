@@ -6,7 +6,7 @@ class ListNode:
     """
     def __init__(self, data=None, next=None):
         self.data= data
-        self.next= next
+        self.next= None
     
 class SinglyLinkedList:
     def __init__(self):
@@ -15,10 +15,6 @@ class SinglyLinkedList:
         Takes O(1) time.
         """
         self.head = None
-        if self.head is None:
-            self.curr_node = ListNode()
-
-        self.curr_node= self.head
 
 
     def append(self, data):
@@ -44,9 +40,11 @@ class SinglyLinkedList:
         Takes O(n) time.
         """
         node= self.head
-        while (node.data != key):
+        while node is not None:
+            if node.data == key:
+                return node
             node= node.next
-        return node
+        return None
         
     def remove(self, key):
         """
@@ -56,9 +54,11 @@ class SinglyLinkedList:
         curr_node = self.head
         if curr_node is not None:
             if curr_node.data == key:
-                self.head = curr_node.next
                 curr_node = None
-            return
+                return
+        else:
+            return None
+        
         while (curr_node is not None):
             if curr_node.data == key:
                 break
@@ -69,7 +69,3 @@ class SinglyLinkedList:
                 return
         prev_node.next = curr_node.next
         curr_node= None
-
-        
-        
-
